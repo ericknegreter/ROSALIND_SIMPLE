@@ -173,45 +173,42 @@ void loop()
       }
       
       PrincipalData = 1;                          /////////CONDICION EJECUTADA UNA VEZ PARA PEDIR DATOS DE CONFIGURACION
-      ModBluetooth.println("\nHold Temperature");
+      String strDos;
+      String strUno = "\nHold Temperature: ";
+      String strTres = strUno+Holdtemp;
+      ModBluetooth.println(strTres);
       ModBluetooth.print("#");
-      ModBluetooth.print(Holdtemp);
+      delay(6000);
+      strUno = "\n Hold Timer: ";
+      strTres = strUno+Holdtime;
+      ModBluetooth.println(strTres);
       ModBluetooth.print("#");
-      delay(5000);
-      ModBluetooth.println("\nHold Timer");
+      delay(6000);
+      strUno = "\nCiclos: ";
+      strTres = strUno+Nocicle;
+      ModBluetooth.println(strTres);
       ModBluetooth.print("#");
-      ModBluetooth.print(Holdtime);
+      delay(6000);
+      strUno = "\nPasos: ";
+      strTres = strUno+Nelem;
+      ModBluetooth.println(strTres);
       ModBluetooth.print("#");
-      delay(5000);
-      ModBluetooth.println("\nCiclos");
-      ModBluetooth.print("#");
-      ModBluetooth.print(Nocicle);
-      ModBluetooth.print("#");
-      delay(5000);
-      ModBluetooth.println("\nPasos");
-      ModBluetooth.print("#");
-      ModBluetooth.print(Nelem);
-      ModBluetooth.print("#");
-      delay(5000);
+      delay(6000);
       for(int jt = 0; jt < Nelem; jt++)
       {
-        String strUno = "\nTemperatura paso ";
-        String strTres = ": ";
-        String strDos = strUno+(jt+1)+strTres;
+        strUno = "\nTemperatura paso ";
+        strTres = ": ";
+        strDos = strUno+(jt+1)+strTres+Pasos[jt];
         ModBluetooth.println(strDos);
         ModBluetooth.print("#");
-        ModBluetooth.println(Pasos[jt]);
-        ModBluetooth.print("#");
-        delay(5000);
+        delay(6000);
 
-        String str1Uno = "\nTiempo paso ";
-        String str1Tres = ": ";
-        String str1Dos = str1Uno+(jt+1)+str1Tres;
-        ModBluetooth.println(str1Dos);
+        strUno = "\nTiempo paso ";
+        strTres = ": ";
+        strDos = strUno+(jt+1)+strTres+TiempoPasos[jt];
+        ModBluetooth.println(strDos);
         ModBluetooth.print("#");
-        ModBluetooth.println(TiempoPasos[jt]);
-        ModBluetooth.print("#");
-        delay(5000);
+        delay(6000);
       }
       delay(5000);
     }
