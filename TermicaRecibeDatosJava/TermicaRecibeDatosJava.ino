@@ -11,10 +11,10 @@ SoftwareSerial ModBluetooth(10, 11); // RX | TX
 
 //////////////VARIABLES LECTURA DE DATOS GENERALES DE CONFIGURACION////////////
 String incomingString, HoldString, TimeString, NocicleString;
-float TNelem, TNelem1, Holdtemp, Holdtime, PrincipalData = 0;
+float TNelem, TNelem1, Holdtemp, PrincipalData = 0;
 int Nelem, Nocicle;
 float Pasos[50]; 
-unsigned long TiempoPasos[50];
+unsigned long TiempoPasos[50], Holdtime;
 int cond = 0, cond1 = 0, condt = 0, timeHold = 0, contHold = 0, contcicle;
 
 //////////////VARIABLES-CONSTANTES LECTURA DE SENSOR DE TEMPERATURA////////////
@@ -168,8 +168,8 @@ void loop()
       for(int it = 0; it < Nelem; it++)
       {
         Pasos[it] = incomingString.substring(14+(it*8), 16+(it*8)).toFloat();
-        Pasos[it] = Pasos[it] * 1000;
         TiempoPasos[it] = incomingString.substring(17+(it*8), 21+(it*8)).toInt();
+        TiempoPasos[it] = TiempoPasos[it] * 1000;
       }
       
       PrincipalData = 1;                          /////////CONDICION EJECUTADA UNA VEZ PARA PEDIR DATOS DE CONFIGURACION
@@ -177,18 +177,22 @@ void loop()
       ModBluetooth.print("#");
       ModBluetooth.print(Holdtemp);
       ModBluetooth.print("#");
+      delay(5000);
       ModBluetooth.println("\nHold Timer");
       ModBluetooth.print("#");
       ModBluetooth.print(Holdtime);
       ModBluetooth.print("#");
+      delay(5000);
       ModBluetooth.println("\nCiclos");
       ModBluetooth.print("#");
       ModBluetooth.print(Nocicle);
       ModBluetooth.print("#");
+      delay(5000);
       ModBluetooth.println("\nPasos");
       ModBluetooth.print("#");
       ModBluetooth.print(Nelem);
       ModBluetooth.print("#");
+      delay(5000);
       for(int jt = 0; jt < Nelem; jt++)
       {
         String strUno = "\nTemperatura paso ";
@@ -198,6 +202,7 @@ void loop()
         ModBluetooth.print("#");
         ModBluetooth.println(Pasos[jt]);
         ModBluetooth.print("#");
+        delay(5000);
 
         String str1Uno = "\nTiempo paso ";
         String str1Tres = ": ";
@@ -206,6 +211,7 @@ void loop()
         ModBluetooth.print("#");
         ModBluetooth.println(TiempoPasos[jt]);
         ModBluetooth.print("#");
+        delay(5000);
       }
       delay(5000);
     }
