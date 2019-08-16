@@ -11,8 +11,10 @@ SoftwareSerial ModBluetooth(11, 10); // RX | TX
 
 //////////////VARIABLES LECTURA DE DATOS GENERALES DE CONFIGURACION////////////
 String incomingString, HoldString, TimeString, NocicleString;
-float TNelem, TNelem1, Nelem, Nelem1, Holdtemp, Holdtime, Nocicle, PrincipalData = 0;
-double Pasos[50], TiempoPasos[50];
+float TNelem, TNelem1, Holdtemp, Holdtime, PrincipalData = 0;
+int Nelem, Nocicle;
+float Pasos[50]; 
+unsigned long TiempoPasos[50];
 int cond = 0, cond1 = 0, condt = 0, timeHold = 0, contHold = 0, contcicle;
 
 //////////////VARIABLES-CONSTANTES LECTURA DE SENSOR DE TEMPERATURA////////////
@@ -158,16 +160,16 @@ void loop()
     {
       incomingString = ModBluetooth.readString();
       Holdtemp = incomingString.substring(0, 2).toFloat();
-      Holdtime = incomingString.substring(3, 7).toFloat();
-      Holdtime = Holdtime / 1000.0;
-      Nocicle = incomingString.substring(8, 10).toFloat();
+      Holdtime = incomingString.substring(3, 7).toInt();
+      Holdtime = Holdtime / 1000;
+      Nocicle = incomingString.substring(8, 10).toInt();
       Nelem = incomingString.substring(11, 13).toInt();
 
       for(int it = 0; it < Nelem; it++)
       {
         Pasos[it] = incomingString.substring(14+(it*8), 16+(it*8)).toFloat();
-        Pasos[it] = Pasos[it] / 1000.0;
-        TiempoPasos[it] = incomingString.substring(17+(it*8), 21+(it*8)).toFloat();
+        Pasos[it] = Pasos[it] / 1000;
+        TiempoPasos[it] = incomingString.substring(17+(it*8), 21+(it*8)).toInt();
       }
       
       PrincipalData = 1;                          /////////CONDICION EJECUTADA UNA VEZ PARA PEDIR DATOS DE CONFIGURACION
