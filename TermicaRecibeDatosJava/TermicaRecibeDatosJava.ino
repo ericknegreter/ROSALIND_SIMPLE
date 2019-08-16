@@ -161,14 +161,14 @@ void loop()
       incomingString = ModBluetooth.readString();
       Holdtemp = incomingString.substring(0, 2).toFloat();
       Holdtime = incomingString.substring(3, 7).toInt();
-      Holdtime = Holdtime / 1000;
+      Holdtime = Holdtime * 1000;
       Nocicle = incomingString.substring(8, 10).toInt();
       Nelem = incomingString.substring(11, 13).toInt();
 
       for(int it = 0; it < Nelem; it++)
       {
         Pasos[it] = incomingString.substring(14+(it*8), 16+(it*8)).toFloat();
-        Pasos[it] = Pasos[it] / 1000;
+        Pasos[it] = Pasos[it] * 1000;
         TiempoPasos[it] = incomingString.substring(17+(it*8), 21+(it*8)).toInt();
       }
       
