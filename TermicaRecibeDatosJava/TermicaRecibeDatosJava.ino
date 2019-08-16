@@ -16,6 +16,7 @@ int Nelem, Nocicle;
 float Pasos[50]; 
 unsigned long TiempoPasos[50], Holdtime;
 int cond = 0, cond1 = 0, condt = 0, timeHold = 0, contHold = 0, contcicle;
+String strDos, strUno, strTres;
 
 //////////////VARIABLES-CONSTANTES LECTURA DE SENSOR DE TEMPERATURA////////////
 const int Rc = 10000; //valor de la resistencia
@@ -173,9 +174,8 @@ void loop()
       }
       
       PrincipalData = 1;                          /////////CONDICION EJECUTADA UNA VEZ PARA PEDIR DATOS DE CONFIGURACION
-      String strDos;
-      String strUno = "\nHold Temperature: ";
-      String strTres = strUno+Holdtemp;
+      strUno = "\nHold Temperature: ";
+      strTres = strUno+Holdtemp;
       ModBluetooth.println(strTres);
       ModBluetooth.print("#");
       delay(6000);
@@ -270,6 +270,11 @@ void loop()
     setpoint = Pasos[keycont];                                /////Carga a setpoint el valor de la temperatura cargada previamente en la posicion i(keypoint)
     Holdtime = TiempoPasos[keycont];                          /////Carga a Holdtime el valor del tiempo correspondiente a la temperatura cargada en la posicion i(keypoint)
     keycont++;
+    strUno = "\n Setpoint: ";
+    strTres = strUno+setpoint;
+    ModBluetooth.println(strTres);
+    ModBluetooth.print("#");
+    delay(6000);
   }
   if (flag == 4)                                /////Cuando la bandera es 4 es porque se han realizado los ciclos indicados
   {
