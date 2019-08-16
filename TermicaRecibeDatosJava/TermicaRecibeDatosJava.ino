@@ -3,7 +3,7 @@
 #include <stdlib.h>
 #include <string.h>
 
-SoftwareSerial ModBluetooth(11, 10); // RX | TX
+SoftwareSerial ModBluetooth(10, 11); // RX | TX
 
 #define outputPeltier1 8
 #define outputPeltier2 9
@@ -39,7 +39,7 @@ unsigned long currentMillis = 0, previousMillis = 0;
 
 //////////////////////////////PID coefficient, Values and config ///////////////////
 int flag = 0, flagc = 1, flagd = 0, error = 0, error2 = 0, keycont = 0, keycontcicle = 0;
-float control1, setpoint = 25.0, control12, setpointx = 60;
+float control1, setpoint = 25.0, control12, setpointx = 105;
 float e = 0.0, e_1 = 0.0, e_2 = 0.0, u = 0.0, u_1 = 0.0;
 float kp, ti, td, q0, q1, q2, T = 0.1;
 float k = 0.075, tao = 30.5, theta = 1;
