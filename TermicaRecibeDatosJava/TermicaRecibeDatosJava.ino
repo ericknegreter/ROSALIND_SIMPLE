@@ -222,6 +222,13 @@ void loop()
     flagc = 2;
     flagd = 1;
     e = setpoint - celsius;
+    //BORRAR DESPUES DE PRUEBAS
+    strUno = "\n Setpoint 2: ";
+    strTres = strUno+setpoint;
+    ModBluetooth.println(strTres);
+    ModBluetooth.print("#");
+    delay(6000);
+    //
   }
   if (e <= 1 && e >= -1)                        /////Una vez que la temperatura leida es cercana al setpoint cargado
     error = 1;                                  /////cambia la bandera error para que pueda entrar al siguiente if
@@ -270,11 +277,13 @@ void loop()
     setpoint = Pasos[keycont];                                /////Carga a setpoint el valor de la temperatura cargada previamente en la posicion i(keypoint)
     Holdtime = TiempoPasos[keycont];                          /////Carga a Holdtime el valor del tiempo correspondiente a la temperatura cargada en la posicion i(keypoint)
     keycont++;
-    strUno = "\n Setpoint: ";
+    //BORRAR DESPUES DE PRUEBAS
+    strUno = "\n Setpoint 2: ";
     strTres = strUno+setpoint;
     ModBluetooth.println(strTres);
     ModBluetooth.print("#");
     delay(6000);
+    //
   }
   if (flag == 4)                                /////Cuando la bandera es 4 es porque se han realizado los ciclos indicados
   {
