@@ -174,6 +174,7 @@ void loop()
       }
       
       PrincipalData = 1;                          /////////CONDICION EJECUTADA UNA VEZ PARA PEDIR DATOS DE CONFIGURACION
+      /*
       strUno = "\nHold Temperature: ";
       strTres = strUno+Holdtemp;
       ModBluetooth.println(strTres);
@@ -209,7 +210,9 @@ void loop()
         ModBluetooth.println(strDos);
         ModBluetooth.print("#");
         delay(6000);
-      }
+      }*/
+      ModBluetooth.println("Informacion recibida");
+      ModBluetooth.print("#");
       delay(5000);
     }
   }
